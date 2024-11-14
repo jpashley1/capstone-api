@@ -19,6 +19,11 @@ def my_posts_show
   end
 end
 
+def user_posts
+  @posts = Post.where(user_id: params[:id])
+  render :index
+end
+
 def show
   @post = Post.find_by(id: params[:id])
   render :show

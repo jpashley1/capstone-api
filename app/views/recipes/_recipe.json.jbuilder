@@ -3,6 +3,9 @@ json.title recipe.title
 json.ingredients recipe.ingredients
 json.directions recipe.directions
 json.user_id recipe.user_id
+json.username recipe.user.username 
+
+
 
 
 # Handle multiple images

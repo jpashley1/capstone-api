@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   post "/users" => "users#create"
   patch "users/:id" => "users#update"
-  get "users/my_profile" => "users#my_profile_show"
+  get "/my_profile" => "users#my_profile_show"
+  get "/users" => "users#index"
+  get "/users/:id" => "users#show"
 
   post "/sessions" => "sessions#create"
 
@@ -15,14 +17,18 @@ Rails.application.routes.draw do
   get "/recipes" => "recipes#index"
   get "/my_recipes" => "recipes#my_recipes_index"
   get "/my_recipes/:id" => "recipes#my_recipes_show"
+  get "/user_recipes/:id" => "recipes#user_recipes"
   get "/recipes/:id" => "recipes#show"
   post "/recipes" => "recipes#create"
   patch "/recipes/:id" => "recipes#update"
   delete "/recipes/:id" => "recipes#destroy"
+  get "/recipe_box/" => "recipe_box#index"
+  get "/recipe_box/:id" => "recipe_box#show"
  
   get "/posts" => "posts#index"
   get "/my_posts" => "posts#my_posts_index"
   get "/my_posts/:id" => "posts#my_posts_show"
+  get "/user_posts/:id" => "posts#user_posts"
   get "/posts/:id" => "posts#show"
   post "/posts" => "posts#create"
   patch "/posts/:id" => "posts#update"
