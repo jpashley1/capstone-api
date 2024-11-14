@@ -22,8 +22,9 @@ Rails.application.routes.draw do
   post "/recipes" => "recipes#create"
   patch "/recipes/:id" => "recipes#update"
   delete "/recipes/:id" => "recipes#destroy"
-  get "/recipe_box/" => "recipe_box#index"
-  get "/recipe_box/:id" => "recipe_box#show"
+  get "/recipe_box" => "recipe_boxes#index"
+  get "/recipe_box/:id" => "recipe_boxes#show"
+  post "/recipe_box" => "recipe_boxes#create"
  
   get "/posts" => "posts#index"
   get "/my_posts" => "posts#my_posts_index"
