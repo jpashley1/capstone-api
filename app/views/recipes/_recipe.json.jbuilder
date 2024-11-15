@@ -4,7 +4,8 @@ json.ingredients recipe.ingredients
 json.directions recipe.directions
 json.user_id recipe.user_id
 json.username recipe.user.username 
-
+json.created_at recipe.created_at
+json.updated_at recipe.updated_at
 
 
 
