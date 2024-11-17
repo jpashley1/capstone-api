@@ -42,18 +42,19 @@ end
 
 def update
   @post = Post.find_by(id: params[:id])
-    
+
   if @post.nil?
-    render json: { error: "post not found" }, status: :not_found
+    render json: { error: "Post not found" }, status: :not_found
+    return
   end
 
   if @post.update(post_params)
     render :show
   else
-    render json: { errors: @post.errors.full_messages },
-      status: :unprocessable_entity
+    render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
   end
 end
+
 
 def destroy
   @post = Post.find_by(id: params[:id])
@@ -69,7 +70,9 @@ end
 private
 
 def post_params
-  params.permit(:caption, :image)
+  permitted_params = {}
+  permitted_params[:caption] = params[:caption] if params[:caption].present?
+  permitted_params[:image] = params[:image] if params[:image].present?
+  permitted_params
 end
-
 end

@@ -95,9 +95,24 @@ class RecipesController < ApplicationController
     render json: { message: "Recipe has been removed" }
   end
 
+  def search
+    query = params[:q]
+    if query.present?
+      @recipes = Recipe.where("title ILIKE ?", "%#{query}%")
+      render :index
+    else
+      render json: [], status: :ok
+    end
+  end
+
   private
 
   def recipe_params
-    params.permit(:title, :ingredients, :directions, :image)
+    permitted_params = {}
+    permitted_params[:title] = params[:title] if params[:title].present?
+    permitted_params[:ingredients] = params[:ingredients] if params[:ingredients].present?
+    permitted_params[:directions] = params[:directions] if params[:directions].present?
+    permitted_params[:image] = params[:image] if params[:image].present?
+    permitted_params
   end
 end

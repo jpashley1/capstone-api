@@ -22,9 +22,13 @@ Rails.application.routes.draw do
   post "/recipes" => "recipes#create"
   patch "/recipes/:id" => "recipes#update"
   delete "/recipes/:id" => "recipes#destroy"
+  get '/recipes_search', to: 'recipes#search'
+
+
   get "/recipe_box" => "recipe_boxes#index"
   get "/recipe_box/:id" => "recipe_boxes#show"
   post "/recipe_box" => "recipe_boxes#create"
+  delete "/recipe_box/:id" => "recipe_boxes#destroy"
  
   get "/posts" => "posts#index"
   get "/my_posts" => "posts#my_posts_index"
@@ -34,6 +38,17 @@ Rails.application.routes.draw do
   post "/posts" => "posts#create"
   patch "/posts/:id" => "posts#update"
   delete "/posts/:id" => "posts#destroy"
-  # Defines the root path route ("/")
-  # root "posts#index"
+
+  resources :posts do
+    resources :comments, only: [:index, :create]
+  end
+
+  resources :recipes do
+    resources :comments, only: [:index, :create]
+  end
+
+  resources :comments, only: [:show, :update, :destroy]
 end
+ 
+
+

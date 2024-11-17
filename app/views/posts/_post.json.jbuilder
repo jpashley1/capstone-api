@@ -12,4 +12,12 @@ else
   json.image_url nil
 end
 
-
+# Include comments
+json.comments post.comments do |comment|
+  json.id comment.id
+  json.user_id comment.user_id
+  json.username comment.user.username
+  json.content comment.content
+  json.created_at comment.created_at
+  json.updated_at comment.updated_at
+end

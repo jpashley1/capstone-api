@@ -21,6 +21,18 @@ class RecipeBoxesController < ApplicationController
     end
   end
 
+  def destroy
+    @recipe_box = RecipeBox.find_by(id: params[:id])
+    
+    if @recipe_box
+      @recipe_box.destroy
+      render json: { message: "recipe has been removed" }
+    else
+      render json: { error: "recipe not found" }, status: :not_found
+    end
+  end
+
+
 
   private
 

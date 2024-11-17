@@ -44,6 +44,15 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.permit(:id, :name, :email, :password, :password_confirmation, :username, :bio, :profile_pic)
+    permitted_params = {}
+    permitted_params[:id] = params[:id] if params[:id].present?
+    permitted_params[:name] = params[:name] if params[:name].present?
+    permitted_params[:email] = params[:email] if params[:email].present?
+    permitted_params[:password] = params[:password] if params[:password].present?
+    permitted_params[:password_confirmation] = params[:password_confirmation] if params[:password_confirmation].present?
+    permitted_params[:username] = params[:username] if params[:username].present?
+    permitted_params[:bio] = params[:bio] if params[:bio].present?
+    permitted_params[:profile_pic] = params[:profile_pic] if params[:profile_pic].present?
+    permitted_params
   end
 end

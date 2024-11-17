@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :recipe_boxes
   has_many :saved_recipes, through: :recipe_boxes, source: :recipe
+  has_many :comments, dependent: :destroy
 
 
   validates :email, presence: true, uniqueness: true
