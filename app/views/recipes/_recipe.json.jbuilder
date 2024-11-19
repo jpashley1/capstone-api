@@ -9,7 +9,6 @@ json.updated_at recipe.updated_at
 
 
 
-# Handle multiple images
 if recipe.image.attached?
   json.image_url url_for(recipe.image)
 else

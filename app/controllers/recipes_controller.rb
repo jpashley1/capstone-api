@@ -63,7 +63,6 @@ class RecipesController < ApplicationController
       return
     end
 
-    # Check if current user owns this recipe
     if @recipe.user_id != current_user.id
       render json: { error: "Unauthorized to update this recipe" }, status: :forbidden
       return

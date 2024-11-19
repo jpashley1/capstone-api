@@ -10,12 +10,5 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
 
-  # after_commit :convert_heic_to_jpeg, if: -> { image.attached? && image.blob.filename.extension.downcase == 'heic' }
-
-  # private
-  
-  # def convert_heic_to_jpeg
-  #   image.variant(format: :jpg).processed
-  # end
   
 end

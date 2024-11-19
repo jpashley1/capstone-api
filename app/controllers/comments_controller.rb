@@ -2,18 +2,15 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show update destroy]
   before_action :set_commentable, only: :create
 
-  # GET /comments
   def index
     @comments = Comment.all
     render json: @comments
   end
 
-  # GET /comments/:id
   def show
     render json: @comment
   end
 
-  # POST /comments
   def create
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user 
@@ -25,7 +22,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /comments/:id
   def update
     if @comment.update(comment_params)
       render json: @comment
@@ -34,7 +30,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/:id
   def destroy
     @comment.destroy
     head :no_content
@@ -43,7 +38,6 @@ class CommentsController < ApplicationController
   private
 
 
-  # Modify this method
   def set_commentable
     if params[:post_id]
       @commentable = Post.find_by(id: params[:post_id])
