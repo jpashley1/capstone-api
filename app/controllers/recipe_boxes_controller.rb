@@ -1,8 +1,12 @@
 class RecipeBoxesController < ApplicationController
 
   def index
-    @recipe_boxes = RecipeBox.where(user_id: current_user.id)
-    render :index
+    if current_user
+      @recipe_boxes = current_user.recipe_boxes.includes(:recipe)
+      render :index
+    else
+      render json: [], status: :ok
+    end
   end
 
   def show 
